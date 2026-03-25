@@ -1,0 +1,54 @@
+============================================================
+SMARTCHEF — MODEL TRAINING REPORT
+============================================================
+
+1. DATASET USED
+   File    : data/recipes_with_nutrition.csv
+   Recipes : 5938
+   Columns : 25
+
+2. MODEL 1 — KNN RECOMMENDER
+   Algorithm  : K-Nearest Neighbors (Ball Tree)
+   Metric     : Euclidean (on StandardScaled features)
+   K value    : 10 neighbors
+   Features   : ['calories', 'protein', 'carbs', 'fat', 'fiber', 'diet_encoded', 'course_encoded', 'difficulty_encoded', 'total_time_mins']
+   Purpose    : Given user BMI + goal → recommend recipes
+   Input      : Nutrition target vector [cal, protein, carbs, fat, fiber, ...]
+   Output     : Top N recipe IDs sorted by distance
+
+3. MODEL 2 — TF-IDF CONTENT SIMILARITY
+   Algorithm  : TF-IDF Vectorization + Cosine Similarity
+   Vocab size : 3000
+   Matrix     : 5938 × 3000
+   N-grams    : (1, 2) — unigrams and bigrams
+   Purpose    : Given a recipe → find similar recipes
+   Input      : recipe_id
+   Output     : Top N similar recipe IDs with scores
+
+4. MODEL 3 — MEAL PLANNER
+   Algorithm  : Greedy Nutrition Scoring
+   Purpose    : Given daily calorie target → generate N-day meal plan
+   Slots      : Breakfast (25%) + Lunch (35%) + Dinner (35%) + Snack (5%)
+   Scoring    : 1/(|cal-target|+1) × protein_bonus × fiber_bonus
+   Input      : daily_calories, diet, days, cuisine_preference
+   Output     : Structured meal plan with recipe details
+
+5. SAVED FILES
+   models/knn_recommender.pkl
+   models/tfidf_similarity.pkl
+   models/feature_scaler.pkl
+   models/label_encoders.pkl
+   models/meal_planner.pkl
+   models/recipes_df.pkl
+
+6. HOW MODELS ARE USED IN FLASK (app.py)
+   /api/recommend  → loads knn + scaler + encoders
+                     user BMI+goal → target vector → KNN.kneighbors()
+   /api/similar    → loads tfidf matrix
+                     recipe_id → cosine_similarity() → top N
+   /api/mealplan   → loads meal_planner pools
+                     daily_cal + diet → greedy scoring → N-day plan
+
+============================================================
+END OF REPORT
+============================================================

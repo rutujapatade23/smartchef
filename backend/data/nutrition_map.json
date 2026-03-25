@@ -1,0 +1,2039 @@
+{
+  "rice": {
+    "cal": 130,
+    "protein": 2.7,
+    "carbs": 28.2,
+    "fat": 0.3,
+    "fiber": 0.4
+  },
+  "basmati rice": {
+    "cal": 130,
+    "protein": 2.7,
+    "carbs": 28.2,
+    "fat": 0.3,
+    "fiber": 0.4
+  },
+  "brown rice": {
+    "cal": 123,
+    "protein": 2.7,
+    "carbs": 25.6,
+    "fat": 1.0,
+    "fiber": 1.8
+  },
+  "poha": {
+    "cal": 333,
+    "protein": 7.3,
+    "carbs": 75.2,
+    "fat": 0.4,
+    "fiber": 1.3
+  },
+  "flattened rice": {
+    "cal": 333,
+    "protein": 7.3,
+    "carbs": 75.2,
+    "fat": 0.4,
+    "fiber": 1.3
+  },
+  "wheat flour": {
+    "cal": 364,
+    "protein": 10.3,
+    "carbs": 76.3,
+    "fat": 1.0,
+    "fiber": 2.7
+  },
+  "atta": {
+    "cal": 364,
+    "protein": 10.3,
+    "carbs": 76.3,
+    "fat": 1.0,
+    "fiber": 2.7
+  },
+  "maida": {
+    "cal": 364,
+    "protein": 10.0,
+    "carbs": 76.0,
+    "fat": 1.0,
+    "fiber": 0.5
+  },
+  "all purpose flour": {
+    "cal": 364,
+    "protein": 10.0,
+    "carbs": 76.0,
+    "fat": 1.0,
+    "fiber": 0.5
+  },
+  "gram flour": {
+    "cal": 387,
+    "protein": 22.4,
+    "carbs": 57.8,
+    "fat": 6.7,
+    "fiber": 10.8
+  },
+  "besan": {
+    "cal": 387,
+    "protein": 22.4,
+    "carbs": 57.8,
+    "fat": 6.7,
+    "fiber": 10.8
+  },
+  "chickpea flour": {
+    "cal": 387,
+    "protein": 22.4,
+    "carbs": 57.8,
+    "fat": 6.7,
+    "fiber": 10.8
+  },
+  "rice flour": {
+    "cal": 366,
+    "protein": 6.0,
+    "carbs": 80.1,
+    "fat": 1.4,
+    "fiber": 2.4
+  },
+  "corn flour": {
+    "cal": 381,
+    "protein": 0.3,
+    "carbs": 91.3,
+    "fat": 0.1,
+    "fiber": 0.9
+  },
+  "cornstarch": {
+    "cal": 381,
+    "protein": 0.3,
+    "carbs": 91.3,
+    "fat": 0.1,
+    "fiber": 0.9
+  },
+  "semolina": {
+    "cal": 360,
+    "protein": 12.7,
+    "carbs": 72.8,
+    "fat": 1.1,
+    "fiber": 3.9
+  },
+  "sooji": {
+    "cal": 360,
+    "protein": 12.7,
+    "carbs": 72.8,
+    "fat": 1.1,
+    "fiber": 3.9
+  },
+  "rava": {
+    "cal": 360,
+    "protein": 12.7,
+    "carbs": 72.8,
+    "fat": 1.1,
+    "fiber": 3.9
+  },
+  "ragi flour": {
+    "cal": 328,
+    "protein": 7.3,
+    "carbs": 72.0,
+    "fat": 1.1,
+    "fiber": 3.6
+  },
+  "ragi": {
+    "cal": 328,
+    "protein": 7.3,
+    "carbs": 72.0,
+    "fat": 1.1,
+    "fiber": 3.6
+  },
+  "finger millet": {
+    "cal": 328,
+    "protein": 7.3,
+    "carbs": 72.0,
+    "fat": 1.1,
+    "fiber": 3.6
+  },
+  "jowar": {
+    "cal": 349,
+    "protein": 10.4,
+    "carbs": 72.6,
+    "fat": 1.9,
+    "fiber": 6.3
+  },
+  "bajra": {
+    "cal": 361,
+    "protein": 11.6,
+    "carbs": 67.5,
+    "fat": 5.0,
+    "fiber": 1.2
+  },
+  "oats": {
+    "cal": 389,
+    "protein": 17.0,
+    "carbs": 66.3,
+    "fat": 6.9,
+    "fiber": 10.6
+  },
+  "rolled oats": {
+    "cal": 389,
+    "protein": 17.0,
+    "carbs": 66.3,
+    "fat": 6.9,
+    "fiber": 10.6
+  },
+  "bread": {
+    "cal": 265,
+    "protein": 9.0,
+    "carbs": 49.2,
+    "fat": 3.2,
+    "fiber": 2.7
+  },
+  "brown bread": {
+    "cal": 247,
+    "protein": 9.0,
+    "carbs": 46.0,
+    "fat": 3.2,
+    "fiber": 6.0
+  },
+  "whole wheat bread": {
+    "cal": 247,
+    "protein": 9.0,
+    "carbs": 46.0,
+    "fat": 3.2,
+    "fiber": 6.0
+  },
+  "vermicelli": {
+    "cal": 352,
+    "protein": 11.0,
+    "carbs": 72.2,
+    "fat": 1.4,
+    "fiber": 2.2
+  },
+  "semiya": {
+    "cal": 352,
+    "protein": 11.0,
+    "carbs": 72.2,
+    "fat": 1.4,
+    "fiber": 2.2
+  },
+  "seviyan": {
+    "cal": 352,
+    "protein": 11.0,
+    "carbs": 72.2,
+    "fat": 1.4,
+    "fiber": 2.2
+  },
+  "noodles": {
+    "cal": 138,
+    "protein": 4.5,
+    "carbs": 25.2,
+    "fat": 2.0,
+    "fiber": 1.0
+  },
+  "hakka noodles": {
+    "cal": 352,
+    "protein": 11.0,
+    "carbs": 72.2,
+    "fat": 1.4,
+    "fiber": 2.2
+  },
+  "pasta": {
+    "cal": 131,
+    "protein": 5.0,
+    "carbs": 25.1,
+    "fat": 1.1,
+    "fiber": 1.8
+  },
+  "spaghetti": {
+    "cal": 131,
+    "protein": 5.0,
+    "carbs": 25.1,
+    "fat": 1.1,
+    "fiber": 1.8
+  },
+  "suji": {
+    "cal": 360,
+    "protein": 12.7,
+    "carbs": 72.8,
+    "fat": 1.1,
+    "fiber": 3.9
+  },
+  "quinoa": {
+    "cal": 120,
+    "protein": 4.4,
+    "carbs": 21.3,
+    "fat": 1.9,
+    "fiber": 2.8
+  },
+  "sabudana": {
+    "cal": 350,
+    "protein": 0.2,
+    "carbs": 86.8,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "tapioca": {
+    "cal": 350,
+    "protein": 0.2,
+    "carbs": 86.8,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "cornmeal": {
+    "cal": 362,
+    "protein": 8.1,
+    "carbs": 73.0,
+    "fat": 3.6,
+    "fiber": 7.3
+  },
+  "chana dal": {
+    "cal": 364,
+    "protein": 20.1,
+    "carbs": 60.5,
+    "fat": 5.6,
+    "fiber": 8.0
+  },
+  "arhar dal": {
+    "cal": 343,
+    "protein": 22.3,
+    "carbs": 57.6,
+    "fat": 1.7,
+    "fiber": 8.4
+  },
+  "toor dal": {
+    "cal": 343,
+    "protein": 22.3,
+    "carbs": 57.6,
+    "fat": 1.7,
+    "fiber": 8.4
+  },
+  "moong dal": {
+    "cal": 347,
+    "protein": 24.0,
+    "carbs": 59.9,
+    "fat": 1.2,
+    "fiber": 16.3
+  },
+  "green moong": {
+    "cal": 347,
+    "protein": 24.0,
+    "carbs": 59.9,
+    "fat": 1.2,
+    "fiber": 16.3
+  },
+  "whole moong": {
+    "cal": 347,
+    "protein": 24.0,
+    "carbs": 59.9,
+    "fat": 1.2,
+    "fiber": 16.3
+  },
+  "urad dal": {
+    "cal": 347,
+    "protein": 25.0,
+    "carbs": 59.0,
+    "fat": 1.4,
+    "fiber": 0.9
+  },
+  "black urad": {
+    "cal": 341,
+    "protein": 25.2,
+    "carbs": 58.0,
+    "fat": 1.6,
+    "fiber": 0.9
+  },
+  "masoor dal": {
+    "cal": 116,
+    "protein": 9.0,
+    "carbs": 20.1,
+    "fat": 0.4,
+    "fiber": 7.9
+  },
+  "red lentil": {
+    "cal": 116,
+    "protein": 9.0,
+    "carbs": 20.1,
+    "fat": 0.4,
+    "fiber": 7.9
+  },
+  "kidney beans": {
+    "cal": 127,
+    "protein": 8.7,
+    "carbs": 22.8,
+    "fat": 0.5,
+    "fiber": 6.4
+  },
+  "rajma": {
+    "cal": 127,
+    "protein": 8.7,
+    "carbs": 22.8,
+    "fat": 0.5,
+    "fiber": 6.4
+  },
+  "black beans": {
+    "cal": 132,
+    "protein": 8.9,
+    "carbs": 23.7,
+    "fat": 0.5,
+    "fiber": 8.7
+  },
+  "chickpeas": {
+    "cal": 364,
+    "protein": 19.3,
+    "carbs": 60.7,
+    "fat": 6.0,
+    "fiber": 17.4
+  },
+  "kabuli chana": {
+    "cal": 364,
+    "protein": 19.3,
+    "carbs": 60.7,
+    "fat": 6.0,
+    "fiber": 17.4
+  },
+  "black chickpeas": {
+    "cal": 378,
+    "protein": 20.0,
+    "carbs": 63.0,
+    "fat": 6.0,
+    "fiber": 17.0
+  },
+  "kala chana": {
+    "cal": 378,
+    "protein": 20.0,
+    "carbs": 63.0,
+    "fat": 6.0,
+    "fiber": 17.0
+  },
+  "green peas": {
+    "cal": 81,
+    "protein": 5.4,
+    "carbs": 14.5,
+    "fat": 0.4,
+    "fiber": 5.1
+  },
+  "peas": {
+    "cal": 81,
+    "protein": 5.4,
+    "carbs": 14.5,
+    "fat": 0.4,
+    "fiber": 5.1
+  },
+  "soya": {
+    "cal": 446,
+    "protein": 36.5,
+    "carbs": 30.2,
+    "fat": 19.9,
+    "fiber": 9.3
+  },
+  "lentils": {
+    "cal": 116,
+    "protein": 9.0,
+    "carbs": 20.1,
+    "fat": 0.4,
+    "fiber": 7.9
+  },
+  "onion": {
+    "cal": 40,
+    "protein": 1.1,
+    "carbs": 9.3,
+    "fat": 0.1,
+    "fiber": 1.7
+  },
+  "shallot": {
+    "cal": 72,
+    "protein": 2.5,
+    "carbs": 16.8,
+    "fat": 0.1,
+    "fiber": 3.2
+  },
+  "spring onion": {
+    "cal": 32,
+    "protein": 1.8,
+    "carbs": 7.3,
+    "fat": 0.2,
+    "fiber": 2.6
+  },
+  "scallion": {
+    "cal": 32,
+    "protein": 1.8,
+    "carbs": 7.3,
+    "fat": 0.2,
+    "fiber": 2.6
+  },
+  "tomato": {
+    "cal": 18,
+    "protein": 0.9,
+    "carbs": 3.9,
+    "fat": 0.2,
+    "fiber": 1.2
+  },
+  "potato": {
+    "cal": 77,
+    "protein": 2.0,
+    "carbs": 17.5,
+    "fat": 0.1,
+    "fiber": 2.2
+  },
+  "sweet potato": {
+    "cal": 86,
+    "protein": 1.6,
+    "carbs": 20.1,
+    "fat": 0.1,
+    "fiber": 3.0
+  },
+  "carrot": {
+    "cal": 41,
+    "protein": 0.9,
+    "carbs": 9.6,
+    "fat": 0.2,
+    "fiber": 2.8
+  },
+  "spinach": {
+    "cal": 23,
+    "protein": 2.9,
+    "carbs": 3.6,
+    "fat": 0.4,
+    "fiber": 2.2
+  },
+  "palak": {
+    "cal": 23,
+    "protein": 2.9,
+    "carbs": 3.6,
+    "fat": 0.4,
+    "fiber": 2.2
+  },
+  "cabbage": {
+    "cal": 25,
+    "protein": 1.3,
+    "carbs": 5.8,
+    "fat": 0.1,
+    "fiber": 2.5
+  },
+  "cauliflower": {
+    "cal": 25,
+    "protein": 1.9,
+    "carbs": 5.0,
+    "fat": 0.3,
+    "fiber": 2.0
+  },
+  "gobi": {
+    "cal": 25,
+    "protein": 1.9,
+    "carbs": 5.0,
+    "fat": 0.3,
+    "fiber": 2.0
+  },
+  "broccoli": {
+    "cal": 34,
+    "protein": 2.8,
+    "carbs": 6.6,
+    "fat": 0.4,
+    "fiber": 2.6
+  },
+  "brinjal": {
+    "cal": 25,
+    "protein": 1.0,
+    "carbs": 5.9,
+    "fat": 0.2,
+    "fiber": 3.0
+  },
+  "eggplant": {
+    "cal": 25,
+    "protein": 1.0,
+    "carbs": 5.9,
+    "fat": 0.2,
+    "fiber": 3.0
+  },
+  "baingan": {
+    "cal": 25,
+    "protein": 1.0,
+    "carbs": 5.9,
+    "fat": 0.2,
+    "fiber": 3.0
+  },
+  "bitter gourd": {
+    "cal": 17,
+    "protein": 1.0,
+    "carbs": 3.7,
+    "fat": 0.2,
+    "fiber": 2.8
+  },
+  "karela": {
+    "cal": 17,
+    "protein": 1.0,
+    "carbs": 3.7,
+    "fat": 0.2,
+    "fiber": 2.8
+  },
+  "ladyfinger": {
+    "cal": 33,
+    "protein": 1.9,
+    "carbs": 7.5,
+    "fat": 0.2,
+    "fiber": 3.2
+  },
+  "okra": {
+    "cal": 33,
+    "protein": 1.9,
+    "carbs": 7.5,
+    "fat": 0.2,
+    "fiber": 3.2
+  },
+  "bhindi": {
+    "cal": 33,
+    "protein": 1.9,
+    "carbs": 7.5,
+    "fat": 0.2,
+    "fiber": 3.2
+  },
+  "green beans": {
+    "cal": 31,
+    "protein": 1.8,
+    "carbs": 7.1,
+    "fat": 0.1,
+    "fiber": 2.7
+  },
+  "french beans": {
+    "cal": 31,
+    "protein": 1.8,
+    "carbs": 7.1,
+    "fat": 0.1,
+    "fiber": 2.7
+  },
+  "mushroom": {
+    "cal": 22,
+    "protein": 3.1,
+    "carbs": 3.3,
+    "fat": 0.3,
+    "fiber": 1.0
+  },
+  "corn": {
+    "cal": 86,
+    "protein": 3.3,
+    "carbs": 19.0,
+    "fat": 1.4,
+    "fiber": 2.7
+  },
+  "sweet corn": {
+    "cal": 86,
+    "protein": 3.3,
+    "carbs": 19.0,
+    "fat": 1.4,
+    "fiber": 2.7
+  },
+  "green bell pepper": {
+    "cal": 20,
+    "protein": 0.9,
+    "carbs": 4.6,
+    "fat": 0.2,
+    "fiber": 1.7
+  },
+  "capsicum": {
+    "cal": 20,
+    "protein": 0.9,
+    "carbs": 4.6,
+    "fat": 0.2,
+    "fiber": 1.7
+  },
+  "red bell pepper": {
+    "cal": 31,
+    "protein": 1.0,
+    "carbs": 6.0,
+    "fat": 0.3,
+    "fiber": 2.1
+  },
+  "yellow bell pepper": {
+    "cal": 27,
+    "protein": 1.0,
+    "carbs": 6.3,
+    "fat": 0.2,
+    "fiber": 0.9
+  },
+  "cucumber": {
+    "cal": 15,
+    "protein": 0.7,
+    "carbs": 3.6,
+    "fat": 0.1,
+    "fiber": 0.5
+  },
+  "zucchini": {
+    "cal": 17,
+    "protein": 1.2,
+    "carbs": 3.1,
+    "fat": 0.3,
+    "fiber": 1.0
+  },
+  "pumpkin": {
+    "cal": 26,
+    "protein": 1.0,
+    "carbs": 6.5,
+    "fat": 0.1,
+    "fiber": 0.5
+  },
+  "bottle gourd": {
+    "cal": 14,
+    "protein": 0.2,
+    "carbs": 3.4,
+    "fat": 0.0,
+    "fiber": 0.5
+  },
+  "lauki": {
+    "cal": 14,
+    "protein": 0.2,
+    "carbs": 3.4,
+    "fat": 0.0,
+    "fiber": 0.5
+  },
+  "ridge gourd": {
+    "cal": 20,
+    "protein": 0.5,
+    "carbs": 4.4,
+    "fat": 0.1,
+    "fiber": 0.5
+  },
+  "tindora": {
+    "cal": 18,
+    "protein": 1.2,
+    "carbs": 3.8,
+    "fat": 0.2,
+    "fiber": 1.5
+  },
+  "ivy gourd": {
+    "cal": 18,
+    "protein": 1.2,
+    "carbs": 3.8,
+    "fat": 0.2,
+    "fiber": 1.5
+  },
+  "drumstick": {
+    "cal": 37,
+    "protein": 2.1,
+    "carbs": 8.5,
+    "fat": 0.2,
+    "fiber": 3.2
+  },
+  "moringa": {
+    "cal": 37,
+    "protein": 2.1,
+    "carbs": 8.5,
+    "fat": 0.2,
+    "fiber": 3.2
+  },
+  "raw banana": {
+    "cal": 89,
+    "protein": 1.3,
+    "carbs": 23.0,
+    "fat": 0.1,
+    "fiber": 2.6
+  },
+  "plantain": {
+    "cal": 89,
+    "protein": 1.3,
+    "carbs": 23.0,
+    "fat": 0.1,
+    "fiber": 2.6
+  },
+  "raw papaya": {
+    "cal": 32,
+    "protein": 0.5,
+    "carbs": 7.2,
+    "fat": 0.1,
+    "fiber": 0.9
+  },
+  "yam": {
+    "cal": 118,
+    "protein": 1.5,
+    "carbs": 27.9,
+    "fat": 0.2,
+    "fiber": 4.1
+  },
+  "colocasia": {
+    "cal": 112,
+    "protein": 1.5,
+    "carbs": 26.5,
+    "fat": 0.2,
+    "fiber": 4.0
+  },
+  "arbi": {
+    "cal": 112,
+    "protein": 1.5,
+    "carbs": 26.5,
+    "fat": 0.2,
+    "fiber": 4.0
+  },
+  "lotus stem": {
+    "cal": 74,
+    "protein": 2.6,
+    "carbs": 17.2,
+    "fat": 0.1,
+    "fiber": 4.9
+  },
+  "raw mango": {
+    "cal": 60,
+    "protein": 0.4,
+    "carbs": 15.0,
+    "fat": 0.1,
+    "fiber": 1.6
+  },
+  "radish": {
+    "cal": 16,
+    "protein": 0.7,
+    "carbs": 3.4,
+    "fat": 0.1,
+    "fiber": 1.6
+  },
+  "mooli": {
+    "cal": 16,
+    "protein": 0.7,
+    "carbs": 3.4,
+    "fat": 0.1,
+    "fiber": 1.6
+  },
+  "beetroot": {
+    "cal": 43,
+    "protein": 1.6,
+    "carbs": 9.6,
+    "fat": 0.2,
+    "fiber": 2.8
+  },
+  "celery": {
+    "cal": 16,
+    "protein": 0.7,
+    "carbs": 3.0,
+    "fat": 0.2,
+    "fiber": 1.6
+  },
+  "leek": {
+    "cal": 61,
+    "protein": 1.5,
+    "carbs": 14.2,
+    "fat": 0.3,
+    "fiber": 1.8
+  },
+  "asparagus": {
+    "cal": 20,
+    "protein": 2.2,
+    "carbs": 3.9,
+    "fat": 0.1,
+    "fiber": 2.1
+  },
+  "baby corn": {
+    "cal": 26,
+    "protein": 2.0,
+    "carbs": 5.1,
+    "fat": 0.2,
+    "fiber": 1.9
+  },
+  "mango": {
+    "cal": 60,
+    "protein": 0.8,
+    "carbs": 15.0,
+    "fat": 0.4,
+    "fiber": 1.6
+  },
+  "banana": {
+    "cal": 89,
+    "protein": 1.1,
+    "carbs": 22.8,
+    "fat": 0.3,
+    "fiber": 2.6
+  },
+  "lemon": {
+    "cal": 29,
+    "protein": 1.1,
+    "carbs": 9.3,
+    "fat": 0.3,
+    "fiber": 2.8
+  },
+  "lime": {
+    "cal": 29,
+    "protein": 0.7,
+    "carbs": 10.5,
+    "fat": 0.2,
+    "fiber": 2.8
+  },
+  "orange": {
+    "cal": 47,
+    "protein": 0.9,
+    "carbs": 11.8,
+    "fat": 0.1,
+    "fiber": 2.4
+  },
+  "apple": {
+    "cal": 52,
+    "protein": 0.3,
+    "carbs": 13.8,
+    "fat": 0.2,
+    "fiber": 2.4
+  },
+  "coconut": {
+    "cal": 354,
+    "protein": 3.3,
+    "carbs": 15.2,
+    "fat": 33.5,
+    "fiber": 9.0
+  },
+  "coconut milk": {
+    "cal": 230,
+    "protein": 2.3,
+    "carbs": 5.5,
+    "fat": 24.0,
+    "fiber": 2.2
+  },
+  "coconut cream": {
+    "cal": 330,
+    "protein": 3.3,
+    "carbs": 7.4,
+    "fat": 34.7,
+    "fiber": 2.2
+  },
+  "tamarind": {
+    "cal": 239,
+    "protein": 2.8,
+    "carbs": 62.5,
+    "fat": 0.6,
+    "fiber": 5.1
+  },
+  "tamarind water": {
+    "cal": 24,
+    "protein": 0.3,
+    "carbs": 6.3,
+    "fat": 0.1,
+    "fiber": 0.5
+  },
+  "pomegranate": {
+    "cal": 83,
+    "protein": 1.7,
+    "carbs": 18.7,
+    "fat": 1.2,
+    "fiber": 4.0
+  },
+  "papaya": {
+    "cal": 32,
+    "protein": 0.5,
+    "carbs": 7.2,
+    "fat": 0.1,
+    "fiber": 0.9
+  },
+  "pineapple": {
+    "cal": 50,
+    "protein": 0.5,
+    "carbs": 13.1,
+    "fat": 0.1,
+    "fiber": 1.4
+  },
+  "grapes": {
+    "cal": 69,
+    "protein": 0.7,
+    "carbs": 18.1,
+    "fat": 0.2,
+    "fiber": 0.9
+  },
+  "strawberry": {
+    "cal": 32,
+    "protein": 0.7,
+    "carbs": 7.7,
+    "fat": 0.3,
+    "fiber": 2.0
+  },
+  "avocado": {
+    "cal": 160,
+    "protein": 2.0,
+    "carbs": 8.5,
+    "fat": 14.7,
+    "fiber": 6.7
+  },
+  "milk": {
+    "cal": 61,
+    "protein": 3.2,
+    "carbs": 4.8,
+    "fat": 3.3,
+    "fiber": 0.0
+  },
+  "curd": {
+    "cal": 61,
+    "protein": 3.5,
+    "carbs": 4.7,
+    "fat": 3.3,
+    "fiber": 0.0
+  },
+  "yogurt": {
+    "cal": 61,
+    "protein": 3.5,
+    "carbs": 4.7,
+    "fat": 3.3,
+    "fiber": 0.0
+  },
+  "dahi": {
+    "cal": 61,
+    "protein": 3.5,
+    "carbs": 4.7,
+    "fat": 3.3,
+    "fiber": 0.0
+  },
+  "hung curd": {
+    "cal": 100,
+    "protein": 7.0,
+    "carbs": 4.0,
+    "fat": 7.0,
+    "fiber": 0.0
+  },
+  "greek yogurt": {
+    "cal": 100,
+    "protein": 7.0,
+    "carbs": 4.0,
+    "fat": 7.0,
+    "fiber": 0.0
+  },
+  "butter": {
+    "cal": 717,
+    "protein": 0.9,
+    "carbs": 0.1,
+    "fat": 81.1,
+    "fiber": 0.0
+  },
+  "ghee": {
+    "cal": 900,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "paneer": {
+    "cal": 265,
+    "protein": 18.3,
+    "carbs": 1.2,
+    "fat": 20.8,
+    "fiber": 0.0
+  },
+  "cheese": {
+    "cal": 402,
+    "protein": 25.0,
+    "carbs": 1.3,
+    "fat": 33.1,
+    "fiber": 0.0
+  },
+  "cream": {
+    "cal": 345,
+    "protein": 2.8,
+    "carbs": 2.9,
+    "fat": 36.1,
+    "fiber": 0.0
+  },
+  "fresh cream": {
+    "cal": 345,
+    "protein": 2.8,
+    "carbs": 2.9,
+    "fat": 36.1,
+    "fiber": 0.0
+  },
+  "condensed milk": {
+    "cal": 321,
+    "protein": 7.9,
+    "carbs": 54.4,
+    "fat": 8.7,
+    "fiber": 0.0
+  },
+  "egg": {
+    "cal": 155,
+    "protein": 13.0,
+    "carbs": 1.1,
+    "fat": 11.0,
+    "fiber": 0.0
+  },
+  "khoya": {
+    "cal": 421,
+    "protein": 19.8,
+    "carbs": 36.4,
+    "fat": 24.5,
+    "fiber": 0.0
+  },
+  "mawa": {
+    "cal": 421,
+    "protein": 19.8,
+    "carbs": 36.4,
+    "fat": 24.5,
+    "fiber": 0.0
+  },
+  "buttermilk": {
+    "cal": 40,
+    "protein": 3.3,
+    "carbs": 4.8,
+    "fat": 0.9,
+    "fiber": 0.0
+  },
+  "whipping cream": {
+    "cal": 257,
+    "protein": 1.9,
+    "carbs": 3.2,
+    "fat": 26.7,
+    "fiber": 0.0
+  },
+  "milk powder": {
+    "cal": 496,
+    "protein": 26.3,
+    "carbs": 54.4,
+    "fat": 21.5,
+    "fiber": 0.0
+  },
+  "chicken": {
+    "cal": 165,
+    "protein": 31.0,
+    "carbs": 0.0,
+    "fat": 3.6,
+    "fiber": 0.0
+  },
+  "mutton": {
+    "cal": 294,
+    "protein": 25.6,
+    "carbs": 0.0,
+    "fat": 21.0,
+    "fiber": 0.0
+  },
+  "lamb": {
+    "cal": 294,
+    "protein": 25.6,
+    "carbs": 0.0,
+    "fat": 21.0,
+    "fiber": 0.0
+  },
+  "beef": {
+    "cal": 250,
+    "protein": 26.1,
+    "carbs": 0.0,
+    "fat": 15.4,
+    "fiber": 0.0
+  },
+  "pork": {
+    "cal": 242,
+    "protein": 27.0,
+    "carbs": 0.0,
+    "fat": 14.0,
+    "fiber": 0.0
+  },
+  "fish": {
+    "cal": 206,
+    "protein": 22.0,
+    "carbs": 0.0,
+    "fat": 12.0,
+    "fiber": 0.0
+  },
+  "salmon": {
+    "cal": 208,
+    "protein": 20.4,
+    "carbs": 0.0,
+    "fat": 13.4,
+    "fiber": 0.0
+  },
+  "tuna": {
+    "cal": 144,
+    "protein": 23.7,
+    "carbs": 0.0,
+    "fat": 4.9,
+    "fiber": 0.0
+  },
+  "prawns": {
+    "cal": 85,
+    "protein": 18.0,
+    "carbs": 0.9,
+    "fat": 0.9,
+    "fiber": 0.0
+  },
+  "shrimp": {
+    "cal": 85,
+    "protein": 18.0,
+    "carbs": 0.9,
+    "fat": 0.9,
+    "fiber": 0.0
+  },
+  "crab": {
+    "cal": 97,
+    "protein": 19.5,
+    "carbs": 0.1,
+    "fat": 1.8,
+    "fiber": 0.0
+  },
+  "keema": {
+    "cal": 294,
+    "protein": 25.6,
+    "carbs": 0.0,
+    "fat": 21.0,
+    "fiber": 0.0
+  },
+  "mince": {
+    "cal": 294,
+    "protein": 25.6,
+    "carbs": 0.0,
+    "fat": 21.0,
+    "fiber": 0.0
+  },
+  "oil": {
+    "cal": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "sunflower oil": {
+    "cal": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "olive oil": {
+    "cal": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "mustard oil": {
+    "cal": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "sesame oil": {
+    "cal": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "coconut oil": {
+    "cal": 862,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 99.1,
+    "fiber": 0.0
+  },
+  "vegetable oil": {
+    "cal": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "cooking oil": {
+    "cal": 884,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "fiber": 0.0
+  },
+  "cashew": {
+    "cal": 553,
+    "protein": 18.2,
+    "carbs": 30.2,
+    "fat": 43.9,
+    "fiber": 3.3
+  },
+  "peanut": {
+    "cal": 567,
+    "protein": 25.8,
+    "carbs": 16.1,
+    "fat": 49.2,
+    "fiber": 8.5
+  },
+  "groundnut": {
+    "cal": 567,
+    "protein": 25.8,
+    "carbs": 16.1,
+    "fat": 49.2,
+    "fiber": 8.5
+  },
+  "almond": {
+    "cal": 579,
+    "protein": 21.2,
+    "carbs": 21.7,
+    "fat": 49.9,
+    "fiber": 12.5
+  },
+  "badam": {
+    "cal": 579,
+    "protein": 21.2,
+    "carbs": 21.7,
+    "fat": 49.9,
+    "fiber": 12.5
+  },
+  "pistachio": {
+    "cal": 562,
+    "protein": 20.0,
+    "carbs": 27.2,
+    "fat": 45.4,
+    "fiber": 10.6
+  },
+  "walnut": {
+    "cal": 654,
+    "protein": 15.2,
+    "carbs": 13.7,
+    "fat": 65.2,
+    "fiber": 6.7
+  },
+  "raisin": {
+    "cal": 299,
+    "protein": 3.1,
+    "carbs": 79.2,
+    "fat": 0.5,
+    "fiber": 3.7
+  },
+  "kishmish": {
+    "cal": 299,
+    "protein": 3.1,
+    "carbs": 79.2,
+    "fat": 0.5,
+    "fiber": 3.7
+  },
+  "sesame": {
+    "cal": 573,
+    "protein": 17.7,
+    "carbs": 23.5,
+    "fat": 49.7,
+    "fiber": 11.8
+  },
+  "til": {
+    "cal": 573,
+    "protein": 17.7,
+    "carbs": 23.5,
+    "fat": 49.7,
+    "fiber": 11.8
+  },
+  "poppy seed": {
+    "cal": 525,
+    "protein": 17.9,
+    "carbs": 28.1,
+    "fat": 41.6,
+    "fiber": 19.5
+  },
+  "khus khus": {
+    "cal": 525,
+    "protein": 17.9,
+    "carbs": 28.1,
+    "fat": 41.6,
+    "fiber": 19.5
+  },
+  "flax seed": {
+    "cal": 534,
+    "protein": 18.3,
+    "carbs": 28.9,
+    "fat": 42.2,
+    "fiber": 27.3
+  },
+  "melon seed": {
+    "cal": 557,
+    "protein": 28.8,
+    "carbs": 15.3,
+    "fat": 45.9,
+    "fiber": 0.5
+  },
+  "charmagaz": {
+    "cal": 557,
+    "protein": 28.8,
+    "carbs": 15.3,
+    "fat": 45.9,
+    "fiber": 0.5
+  },
+  "pine nut": {
+    "cal": 673,
+    "protein": 13.7,
+    "carbs": 13.1,
+    "fat": 68.4,
+    "fiber": 3.7
+  },
+  "chestnut": {
+    "cal": 245,
+    "protein": 3.2,
+    "carbs": 53.0,
+    "fat": 2.2,
+    "fiber": 5.1
+  },
+  "desiccated coconut": {
+    "cal": 592,
+    "protein": 6.8,
+    "carbs": 24.0,
+    "fat": 57.2,
+    "fiber": 16.3
+  },
+  "turmeric": {
+    "cal": 354,
+    "protein": 7.8,
+    "carbs": 64.9,
+    "fat": 9.9,
+    "fiber": 21.1
+  },
+  "red chilli": {
+    "cal": 282,
+    "protein": 13.5,
+    "carbs": 55.9,
+    "fat": 8.6,
+    "fiber": 35.0
+  },
+  "chilli powder": {
+    "cal": 282,
+    "protein": 13.5,
+    "carbs": 55.9,
+    "fat": 8.6,
+    "fiber": 35.0
+  },
+  "coriander powder": {
+    "cal": 298,
+    "protein": 12.4,
+    "carbs": 54.9,
+    "fat": 17.8,
+    "fiber": 41.9
+  },
+  "dhania powder": {
+    "cal": 298,
+    "protein": 12.4,
+    "carbs": 54.9,
+    "fat": 17.8,
+    "fiber": 41.9
+  },
+  "cumin": {
+    "cal": 375,
+    "protein": 17.8,
+    "carbs": 44.2,
+    "fat": 22.3,
+    "fiber": 10.5
+  },
+  "jeera": {
+    "cal": 375,
+    "protein": 17.8,
+    "carbs": 44.2,
+    "fat": 22.3,
+    "fiber": 10.5
+  },
+  "mustard seed": {
+    "cal": 508,
+    "protein": 26.1,
+    "carbs": 28.1,
+    "fat": 36.2,
+    "fiber": 12.2
+  },
+  "rai": {
+    "cal": 508,
+    "protein": 26.1,
+    "carbs": 28.1,
+    "fat": 36.2,
+    "fiber": 12.2
+  },
+  "garam masala": {
+    "cal": 357,
+    "protein": 13.7,
+    "carbs": 52.3,
+    "fat": 15.0,
+    "fiber": 21.2
+  },
+  "black pepper": {
+    "cal": 251,
+    "protein": 10.4,
+    "carbs": 63.7,
+    "fat": 3.3,
+    "fiber": 25.3
+  },
+  "cardamom": {
+    "cal": 311,
+    "protein": 6.7,
+    "carbs": 68.5,
+    "fat": 6.7,
+    "fiber": 28.0
+  },
+  "elaichi": {
+    "cal": 311,
+    "protein": 6.7,
+    "carbs": 68.5,
+    "fat": 6.7,
+    "fiber": 28.0
+  },
+  "cinnamon": {
+    "cal": 247,
+    "protein": 3.9,
+    "carbs": 80.6,
+    "fat": 1.2,
+    "fiber": 53.1
+  },
+  "dalchini": {
+    "cal": 247,
+    "protein": 3.9,
+    "carbs": 80.6,
+    "fat": 1.2,
+    "fiber": 53.1
+  },
+  "clove": {
+    "cal": 274,
+    "protein": 6.0,
+    "carbs": 65.5,
+    "fat": 13.0,
+    "fiber": 33.9
+  },
+  "laung": {
+    "cal": 274,
+    "protein": 6.0,
+    "carbs": 65.5,
+    "fat": 13.0,
+    "fiber": 33.9
+  },
+  "asafoetida": {
+    "cal": 297,
+    "protein": 4.0,
+    "carbs": 67.8,
+    "fat": 1.1,
+    "fiber": 4.1
+  },
+  "hing": {
+    "cal": 297,
+    "protein": 4.0,
+    "carbs": 67.8,
+    "fat": 1.1,
+    "fiber": 4.1
+  },
+  "ajwain": {
+    "cal": 305,
+    "protein": 15.9,
+    "carbs": 43.0,
+    "fat": 25.0,
+    "fiber": 21.2
+  },
+  "carom seed": {
+    "cal": 305,
+    "protein": 15.9,
+    "carbs": 43.0,
+    "fat": 25.0,
+    "fiber": 21.2
+  },
+  "fennel": {
+    "cal": 345,
+    "protein": 15.8,
+    "carbs": 52.3,
+    "fat": 14.9,
+    "fiber": 39.8
+  },
+  "saunf": {
+    "cal": 345,
+    "protein": 15.8,
+    "carbs": 52.3,
+    "fat": 14.9,
+    "fiber": 39.8
+  },
+  "fenugreek": {
+    "cal": 323,
+    "protein": 23.0,
+    "carbs": 58.4,
+    "fat": 6.4,
+    "fiber": 24.6
+  },
+  "methi": {
+    "cal": 323,
+    "protein": 23.0,
+    "carbs": 58.4,
+    "fat": 6.4,
+    "fiber": 24.6
+  },
+  "kasuri methi": {
+    "cal": 323,
+    "protein": 23.0,
+    "carbs": 58.4,
+    "fat": 6.4,
+    "fiber": 24.6
+  },
+  "chaat masala": {
+    "cal": 250,
+    "protein": 10.0,
+    "carbs": 50.0,
+    "fat": 5.0,
+    "fiber": 15.0
+  },
+  "amchur": {
+    "cal": 320,
+    "protein": 2.0,
+    "carbs": 79.0,
+    "fat": 0.5,
+    "fiber": 13.0
+  },
+  "dry mango powder": {
+    "cal": 320,
+    "protein": 2.0,
+    "carbs": 79.0,
+    "fat": 0.5,
+    "fiber": 13.0
+  },
+  "saffron": {
+    "cal": 310,
+    "protein": 11.4,
+    "carbs": 65.4,
+    "fat": 5.9,
+    "fiber": 3.9
+  },
+  "star anise": {
+    "cal": 337,
+    "protein": 6.0,
+    "carbs": 50.0,
+    "fat": 16.0,
+    "fiber": 15.0
+  },
+  "mace": {
+    "cal": 475,
+    "protein": 12.2,
+    "carbs": 50.5,
+    "fat": 32.4,
+    "fiber": 0.0
+  },
+  "nutmeg": {
+    "cal": 525,
+    "protein": 5.8,
+    "carbs": 49.3,
+    "fat": 36.3,
+    "fiber": 0.0
+  },
+  "bay leaf": {
+    "cal": 313,
+    "protein": 7.6,
+    "carbs": 74.9,
+    "fat": 8.4,
+    "fiber": 26.3
+  },
+  "black cardamom": {
+    "cal": 311,
+    "protein": 6.7,
+    "carbs": 68.5,
+    "fat": 6.7,
+    "fiber": 28.0
+  },
+  "kala namak": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "oregano": {
+    "cal": 265,
+    "protein": 11.0,
+    "carbs": 64.4,
+    "fat": 4.3,
+    "fiber": 42.5
+  },
+  "red chilli flakes": {
+    "cal": 282,
+    "protein": 13.5,
+    "carbs": 55.9,
+    "fat": 8.6,
+    "fiber": 35.0
+  },
+  "mixed spice": {
+    "cal": 300,
+    "protein": 10.0,
+    "carbs": 55.0,
+    "fat": 10.0,
+    "fiber": 20.0
+  },
+  "pav bhaji masala": {
+    "cal": 300,
+    "protein": 10.0,
+    "carbs": 55.0,
+    "fat": 10.0,
+    "fiber": 20.0
+  },
+  "biryani masala": {
+    "cal": 300,
+    "protein": 10.0,
+    "carbs": 55.0,
+    "fat": 10.0,
+    "fiber": 20.0
+  },
+  "sambar powder": {
+    "cal": 280,
+    "protein": 12.0,
+    "carbs": 50.0,
+    "fat": 8.0,
+    "fiber": 18.0
+  },
+  "rasam powder": {
+    "cal": 280,
+    "protein": 12.0,
+    "carbs": 50.0,
+    "fat": 8.0,
+    "fiber": 18.0
+  },
+  "ginger": {
+    "cal": 80,
+    "protein": 1.8,
+    "carbs": 17.8,
+    "fat": 0.8,
+    "fiber": 2.0
+  },
+  "garlic": {
+    "cal": 149,
+    "protein": 6.4,
+    "carbs": 33.1,
+    "fat": 0.5,
+    "fiber": 2.1
+  },
+  "ginger garlic paste": {
+    "cal": 80,
+    "protein": 2.0,
+    "carbs": 17.0,
+    "fat": 0.5,
+    "fiber": 1.5
+  },
+  "green chilli": {
+    "cal": 40,
+    "protein": 2.0,
+    "carbs": 9.5,
+    "fat": 0.4,
+    "fiber": 1.5
+  },
+  "dry red chilli": {
+    "cal": 282,
+    "protein": 13.5,
+    "carbs": 55.9,
+    "fat": 8.6,
+    "fiber": 35.0
+  },
+  "coriander leaves": {
+    "cal": 23,
+    "protein": 2.1,
+    "carbs": 3.7,
+    "fat": 0.5,
+    "fiber": 2.8
+  },
+  "cilantro": {
+    "cal": 23,
+    "protein": 2.1,
+    "carbs": 3.7,
+    "fat": 0.5,
+    "fiber": 2.8
+  },
+  "dhania": {
+    "cal": 23,
+    "protein": 2.1,
+    "carbs": 3.7,
+    "fat": 0.5,
+    "fiber": 2.8
+  },
+  "mint leaves": {
+    "cal": 44,
+    "protein": 3.3,
+    "carbs": 8.4,
+    "fat": 0.7,
+    "fiber": 6.8
+  },
+  "pudina": {
+    "cal": 44,
+    "protein": 3.3,
+    "carbs": 8.4,
+    "fat": 0.7,
+    "fiber": 6.8
+  },
+  "curry leaves": {
+    "cal": 108,
+    "protein": 6.1,
+    "carbs": 16.0,
+    "fat": 1.0,
+    "fiber": 13.1
+  },
+  "kadi patta": {
+    "cal": 108,
+    "protein": 6.1,
+    "carbs": 16.0,
+    "fat": 1.0,
+    "fiber": 13.1
+  },
+  "basil": {
+    "cal": 23,
+    "protein": 3.2,
+    "carbs": 2.6,
+    "fat": 0.6,
+    "fiber": 1.6
+  },
+  "parsley": {
+    "cal": 36,
+    "protein": 3.0,
+    "carbs": 6.3,
+    "fat": 0.8,
+    "fiber": 3.3
+  },
+  "dill": {
+    "cal": 43,
+    "protein": 3.5,
+    "carbs": 7.0,
+    "fat": 1.1,
+    "fiber": 2.1
+  },
+  "thyme": {
+    "cal": 101,
+    "protein": 5.6,
+    "carbs": 24.5,
+    "fat": 1.7,
+    "fiber": 14.0
+  },
+  "rosemary": {
+    "cal": 131,
+    "protein": 3.3,
+    "carbs": 20.7,
+    "fat": 5.9,
+    "fiber": 14.1
+  },
+  "sugar": {
+    "cal": 387,
+    "protein": 0.0,
+    "carbs": 100.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "brown sugar": {
+    "cal": 380,
+    "protein": 0.1,
+    "carbs": 98.1,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "jaggery": {
+    "cal": 383,
+    "protein": 0.4,
+    "carbs": 98.0,
+    "fat": 0.1,
+    "fiber": 0.0
+  },
+  "gur": {
+    "cal": 383,
+    "protein": 0.4,
+    "carbs": 98.0,
+    "fat": 0.1,
+    "fiber": 0.0
+  },
+  "honey": {
+    "cal": 304,
+    "protein": 0.3,
+    "carbs": 82.4,
+    "fat": 0.0,
+    "fiber": 0.2
+  },
+  "maple syrup": {
+    "cal": 260,
+    "protein": 0.0,
+    "carbs": 67.0,
+    "fat": 0.1,
+    "fiber": 0.0
+  },
+  "stevia": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "sugar syrup": {
+    "cal": 240,
+    "protein": 0.0,
+    "carbs": 64.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "soy sauce": {
+    "cal": 53,
+    "protein": 5.6,
+    "carbs": 4.9,
+    "fat": 0.6,
+    "fiber": 0.8
+  },
+  "tomato ketchup": {
+    "cal": 100,
+    "protein": 1.7,
+    "carbs": 27.0,
+    "fat": 0.1,
+    "fiber": 0.3
+  },
+  "tomato sauce": {
+    "cal": 100,
+    "protein": 1.7,
+    "carbs": 27.0,
+    "fat": 0.1,
+    "fiber": 0.3
+  },
+  "vinegar": {
+    "cal": 18,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "lemon juice": {
+    "cal": 22,
+    "protein": 0.4,
+    "carbs": 6.9,
+    "fat": 0.2,
+    "fiber": 0.3
+  },
+  "tamarind paste": {
+    "cal": 239,
+    "protein": 2.8,
+    "carbs": 62.5,
+    "fat": 0.6,
+    "fiber": 5.1
+  },
+  "vanilla": {
+    "cal": 288,
+    "protein": 0.1,
+    "carbs": 12.7,
+    "fat": 0.1,
+    "fiber": 0.0
+  },
+  "worcestershire": {
+    "cal": 78,
+    "protein": 1.3,
+    "carbs": 18.3,
+    "fat": 0.1,
+    "fiber": 0.0
+  },
+  "oyster sauce": {
+    "cal": 51,
+    "protein": 0.0,
+    "carbs": 11.0,
+    "fat": 0.3,
+    "fiber": 0.3
+  },
+  "fish sauce": {
+    "cal": 35,
+    "protein": 5.1,
+    "carbs": 3.6,
+    "fat": 0.1,
+    "fiber": 0.0
+  },
+  "hot sauce": {
+    "cal": 45,
+    "protein": 1.5,
+    "carbs": 7.0,
+    "fat": 0.5,
+    "fiber": 1.0
+  },
+  "mayonnaise": {
+    "cal": 680,
+    "protein": 1.0,
+    "carbs": 0.6,
+    "fat": 75.0,
+    "fiber": 0.0
+  },
+  "tomato puree": {
+    "cal": 32,
+    "protein": 1.7,
+    "carbs": 7.3,
+    "fat": 0.2,
+    "fiber": 1.7
+  },
+  "coconut chutney": {
+    "cal": 200,
+    "protein": 3.0,
+    "carbs": 15.0,
+    "fat": 16.0,
+    "fiber": 5.0
+  },
+  "green chutney": {
+    "cal": 60,
+    "protein": 2.0,
+    "carbs": 8.0,
+    "fat": 2.0,
+    "fiber": 3.0
+  },
+  "baking powder": {
+    "cal": 53,
+    "protein": 0.0,
+    "carbs": 27.7,
+    "fat": 0.0,
+    "fiber": 0.2
+  },
+  "baking soda": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "yeast": {
+    "cal": 325,
+    "protein": 40.4,
+    "carbs": 41.2,
+    "fat": 7.6,
+    "fiber": 26.9
+  },
+  "gelatin": {
+    "cal": 335,
+    "protein": 85.6,
+    "carbs": 0.0,
+    "fat": 0.1,
+    "fiber": 0.0
+  },
+  "agar": {
+    "cal": 26,
+    "protein": 0.5,
+    "carbs": 6.8,
+    "fat": 0.0,
+    "fiber": 0.5
+  },
+  "salt": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "water": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "ice": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "kewra water": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "rose water": {
+    "cal": 0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "tea": {
+    "cal": 1,
+    "protein": 0.0,
+    "carbs": 0.3,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "coffee": {
+    "cal": 2,
+    "protein": 0.3,
+    "carbs": 0.0,
+    "fat": 0.0,
+    "fiber": 0.0
+  },
+  "cocoa": {
+    "cal": 228,
+    "protein": 19.6,
+    "carbs": 57.9,
+    "fat": 13.7,
+    "fiber": 37.0
+  },
+  "chocolate": {
+    "cal": 546,
+    "protein": 4.9,
+    "carbs": 59.4,
+    "fat": 31.3,
+    "fiber": 7.0
+  },
+  "dark chocolate": {
+    "cal": 604,
+    "protein": 7.8,
+    "carbs": 45.9,
+    "fat": 43.1,
+    "fiber": 10.9
+  }
+}

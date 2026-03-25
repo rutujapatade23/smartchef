@@ -1,0 +1,12 @@
+# SmartChef Backend Environment Variables
+SECRET_KEY=smartchef-super-secret-key-change-this-in-production
+
+# Neon PostgreSQL Database
+DATABASE_URL=postgresql://neondb_owner:npg_xYdzAfqsZ6n3@ep-lingering-morning-a1u7qbtv-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+
+# Local PostgreSQL (backup - comment out if using Neon)
+# DB_HOST=localhost
+# DB_PORT=5432
+# DB_NAME=smartchef
+# DB_USER=postgres
+# DB_PASSWORD=123456789

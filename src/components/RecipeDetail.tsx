@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { RecipeDetail, RecipeSummary } from '../types';
 import client from '../api/client';
 import NutritionCard from './NutritionCard';
-import { Users, Clock, Flame, ChevronRight, Info, AlertCircle, Star } from 'lucide-react';
+import { Users, Clock, Flame, ChevronRight, Info, AlertCircle, Star, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '../context/AuthContext';
+import { useFavourites } from '../context/FavouritesContext';
 
 interface RecipeDetailViewProps {
   recipeId: string | null;
@@ -123,6 +124,8 @@ const FeaturedGrid: React.FC<{ onSelect: (id: string) => void }> = ({ onSelect }
 const RecipeDetailView: React.FC<RecipeDetailViewProps> = ({
   recipeId, onSelectRecipe, defaultServings = 1
 }) => {
+  const { user } = useAuth();
+  const { isSaved, toggle } = useFavourites();
   const [recipe, setRecipe]   = useState<RecipeDetail | null>(null);
   const [loading, setLoading] = useState(false);
   const [servings, setServings] = useState(defaultServings);
@@ -207,6 +210,21 @@ const RecipeDetailView: React.FC<RecipeDetailViewProps> = ({
             </div>
             <h1 className="text-4xl font-serif font-bold leading-tight">{recipe.name}</h1>
           </div>
+
+          {/* Favourites Toggle */}
+          <motion.button
+            whileTap={{ scale: 0.85 }}
+            onClick={() => toggle(recipeId!)}
+            className="ml-auto p-4 rounded-2xl border border-ink/5 hover:border-red-200 hover:bg-red-50/30 transition-all group"
+            title={isSaved(recipeId!) ? "Remove from saved" : "Save recipe"}
+          >
+            <Heart 
+              size={24} 
+              className="transition-colors"
+              fill={isSaved(recipeId!) ? "#e11d48" : "transparent"}
+              stroke={isSaved(recipeId!) ? "#e11d48" : "currentColor"}
+            />
+          </motion.button>
         </div>
 
         <div className="flex flex-wrap items-center gap-8 py-5 border-y border-ink/5">

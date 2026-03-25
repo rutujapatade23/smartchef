@@ -6,14 +6,15 @@ import Sidebar from '../components/Sidebar';
 import RecipeDetailView from '../components/RecipeDetail';
 import MealPlanner from '../components/MealPlanner';
 import Recommendations from '../components/Recommendations';
-import { UtensilsCrossed, CalendarDays, Sparkles } from 'lucide-react';
+import { UtensilsCrossed, CalendarDays, Sparkles, Heart } from 'lucide-react';
 
-type Tab = 'recipes' | 'mealplan' | 'recommendations';
+type Tab = 'recipes' | 'mealplan' | 'recommendations' | 'saved';
 
 const TABS: { id: Tab; label: string; icon: React.ReactNode }[] = [
   { id: 'recipes',         label: 'Recipes',   icon: <UtensilsCrossed size={15} /> },
   { id: 'mealplan',        label: 'Meal Plan', icon: <CalendarDays size={15} /> },
   { id: 'recommendations', label: 'For You',   icon: <Sparkles size={15} /> },
+  { id: 'saved',           label: 'Saved',     icon: <Heart size={15} /> },
 ];
 
 const Dashboard: React.FC = () => {
@@ -100,11 +101,12 @@ const Dashboard: React.FC = () => {
 
       {/* Content */}
       <div className="flex-1 flex overflow-hidden">
-        {activeTab === 'recipes' && (
+        {(activeTab === 'recipes' || activeTab === 'saved') && (
           <>
             <Sidebar
               onSelectRecipe={handleSelectRecipe}
               selectedRecipeId={selectedRecipeId}
+              defaultMode={activeTab === 'saved' ? 'saved' : 'all'}
             />
             <main
               ref={mainRef}

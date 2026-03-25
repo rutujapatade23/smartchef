@@ -93,6 +93,32 @@ def init_db():
     cur.execute("""
         ALTER TABLE users ADD COLUMN IF NOT EXISTS age INTEGER DEFAULT 21;
     """)
+    
+    # Add favourites table
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS favourites (
+            id         SERIAL PRIMARY KEY,
+            user_email VARCHAR(150) NOT NULL,
+            recipe_id  VARCHAR(100) NOT NULL,
+            saved_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE(user_email, recipe_id)
+        );
+    """)
+
+    # Add meal_plan_history table
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS meal_plan_history (
+            id         SERIAL PRIMARY KEY,
+            user_email VARCHAR(150) NOT NULL,
+            plan_name  VARCHAR(200),
+            plan_json  TEXT NOT NULL,
+            days       INTEGER NOT NULL,
+            diet       VARCHAR(20),
+            daily_calories INTEGER,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """)
+    
     conn.commit()
     cur.close()
     conn.close()
@@ -615,9 +641,17 @@ def get_all_recipes():
 
 @app.route('/api/recipes/filter', methods=['GET'])
 def filter_recipes():
-    diet   = request.args.get('diet', '').strip()
-    course = request.args.get('course', '').strip()
-    df     = recipes_df.copy()
+    diet      = request.args.get('diet', '').strip()
+    course    = request.args.get('course', '').strip()
+    min_cal   = request.args.get('min_cal', '')
+    max_cal   = request.args.get('max_cal', '')
+    max_time  = request.args.get('max_time', '')
+    diff      = request.args.get('difficulty', '').strip()
+    cuisine   = request.args.get('cuisine', '').strip()
+    inc_ing   = request.args.get('include_ingredient', '').strip()
+    exc_ing   = request.args.get('exclude_ingredient', '').strip()
+
+    df = recipes_df.copy()
 
     if diet:
         mapped = {'veg': 'Veg', 'non-veg': 'Non-Veg'}.get(diet, diet)
@@ -626,6 +660,21 @@ def filter_recipes():
         mapped = {'breakfast':'Breakfast','lunch':'Lunch','dinner':'Dinner',
                   'snack':'Snack','dessert':'Dessert','soup':'Soup','drink':'Drink'}.get(course.lower(), course)
         df = df[df['course'] == mapped]
+    
+    if min_cal:
+        df = df[df['calories'] >= int(min_cal)]
+    if max_cal:
+        df = df[df['calories'] <= int(max_cal)]
+    if max_time:
+        df = df[df['total_time_mins'] <= int(max_time)]
+    if diff:
+        df = df[df['difficulty'] == diff]
+    if cuisine:
+        df = df[df['cuisine'].str.lower().str.contains(cuisine.lower(), na=False)]
+    if inc_ing:
+        df = df[df['ingredients_list_str'].str.lower().str.contains(inc_ing.lower(), na=False)]
+    if exc_ing:
+        df = df[~df['ingredients_list_str'].str.lower().str.contains(exc_ing.lower(), na=False)]
 
     return jsonify([recipe_to_summary(row) for _, row in df.head(50).iterrows()])
 
@@ -650,6 +699,83 @@ def search_recipes():
         recipes_df['cuisine'].str.lower().str.contains(query, na=False)
     )
     return jsonify([recipe_to_summary(row) for _, row in recipes_df[mask].head(30).iterrows()])
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FAVOURITES ROUTES
+# ─────────────────────────────────────────────────────────────────────────────
+
+@app.route('/api/favourites', methods=['POST'])
+def add_favourite():
+    email = session.get('email')
+    if not email:
+        return jsonify({'success': False, 'message': 'Not logged in'}), 401
+    
+    data = request.json
+    recipe_id = data.get('recipe_id')
+    if not recipe_id:
+        return jsonify({'success': False, 'message': 'Missing recipe_id'}), 400
+        
+    try:
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute(
+            "INSERT INTO favourites (user_email, recipe_id) VALUES (%s, %s) ON CONFLICT (user_email, recipe_id) DO NOTHING",
+            (email, recipe_id)
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/favourites/<recipe_id>', methods=['DELETE'])
+def remove_favourite(recipe_id):
+    email = session.get('email')
+    if not email:
+        return jsonify({'success': False, 'message': 'Not logged in'}), 401
+        
+    try:
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute(
+            "DELETE FROM favourites WHERE user_email = %s AND recipe_id = %s",
+            (email, recipe_id)
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/favourites', methods=['GET'])
+def get_favourites():
+    email = session.get('email')
+    if not email:
+        return jsonify({'success': False, 'message': 'Not logged in'}), 401
+        
+    try:
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute("SELECT recipe_id FROM favourites WHERE user_email = %s", (email,))
+        rows = cur.fetchall()
+        cur.close()
+        conn.close()
+        
+        fav_ids = [row['recipe_id'] for row in rows]
+        
+        # Join with recipes_df to get full summaries
+        fav_recipes = []
+        for rid in fav_ids:
+            row = recipes_df[recipes_df['recipe_id'] == rid]
+            if not row.empty:
+                fav_recipes.append(recipe_to_summary(row.iloc[0]))
+                
+        return jsonify(fav_recipes)
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -741,6 +867,9 @@ def similar_recipes(recipe_id):
 
     return jsonify(results)
 
+
+import json
+from datetime import datetime
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MEAL PLAN — Multi-dish Indian meals, calories per 1 serving, goal-aware
@@ -919,6 +1048,25 @@ def meal_plan():
 
         plan.append(day_plan)
 
+    # Save to history if logged in
+    email = session.get('email')
+    if email:
+        try:
+            plan_name = f"{days}-Day {diet} Plan · {datetime.now().strftime('%b %d')}"
+            conn = get_db()
+            cur  = conn.cursor()
+            cur.execute(
+                """INSERT INTO meal_plan_history 
+                   (user_email, plan_name, plan_json, days, diet, daily_calories) 
+                   VALUES (%s, %s, %s, %s, %s, %s)""",
+                (email, plan_name, json.dumps(plan), days, diet, daily_calories)
+            )
+            conn.commit()
+            cur.close()
+            conn.close()
+        except Exception as e:
+            print(f"Error saving meal plan history: {e}")
+
     return jsonify({
         'days':          days,
         'daily_target':  daily_calories,
@@ -926,6 +1074,86 @@ def meal_plan():
         'goal':          goal,
         'plan':          plan,
     })
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# MEAL PLAN HISTORY ROUTES
+# ─────────────────────────────────────────────────────────────────────────────
+
+@app.route('/api/mealplan/history', methods=['GET'])
+def get_mealplan_history():
+    email = session.get('email')
+    if not email:
+        return jsonify({'success': False, 'message': 'Not logged in'}), 401
+    
+    try:
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute(
+            """SELECT id, plan_name, days, diet, daily_calories, created_at 
+               FROM meal_plan_history 
+               WHERE user_email = %s 
+               ORDER BY created_at DESC LIMIT 10""",
+            (email,)
+        )
+        rows = cur.fetchall()
+        cur.close()
+        conn.close()
+        return jsonify(rows)
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/mealplan/history/<int:plan_id>', methods=['GET'])
+def get_mealplan_history_entry(plan_id):
+    email = session.get('email')
+    if not email:
+        return jsonify({'success': False, 'message': 'Not logged in'}), 401
+    
+    try:
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute(
+            "SELECT * FROM meal_plan_history WHERE id = %s AND user_email = %s",
+            (plan_id, email)
+        )
+        row = cur.fetchone()
+        cur.close()
+        conn.close()
+        
+        if not row:
+            return jsonify({'success': False, 'message': 'Plan not found'}), 404
+            
+        return jsonify({
+            'id': row['id'],
+            'plan_name': row['plan_name'],
+            'days': row['days'],
+            'diet': row['diet'],
+            'daily_calories': row['daily_calories'],
+            'created_at': row['created_at'],
+            'plan': json.loads(row['plan_json'])
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/mealplan/history/<int:plan_id>', methods=['DELETE'])
+def delete_mealplan_history_entry(plan_id):
+    email = session.get('email')
+    if not email:
+        return jsonify({'success': False, 'message': 'Not logged in'}), 401
+        
+    try:
+        conn = get_db()
+        cur  = conn.cursor()
+        cur.execute(
+            "DELETE FROM meal_plan_history WHERE id = %s AND user_email = %s",
+            (plan_id, email)
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -945,6 +1173,8 @@ def health():
 # RUN
 # ─────────────────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
-    print("  Starting SmartChef API on http://localhost:5000")
+    port = int(os.environ.get('PORT', 5000))
+    print(f"  Starting SmartChef API on http://0.0.0.0:{port}")
     print("  Press Ctrl+C to stop\n")
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    # In production on Render, we use gunicorn. For local testing, we use app.run
+    app.run(debug=False, port=port, host='0.0.0.0')

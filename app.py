@@ -53,8 +53,8 @@ print("  SmartChef API — Loading Models...")
 print("="*55)
 
 BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
-MODELS_DIR  = os.path.join(BASE_DIR, 'models')
-DATA_DIR    = os.path.join(BASE_DIR, 'data')
+MODELS_DIR  = os.path.join(BASE_DIR, 'backend', 'models')
+DATA_DIR    = os.path.join(BASE_DIR, 'backend', 'data')
 
 def load_pickle(filename):
     path = os.path.join(MODELS_DIR, filename)
@@ -703,6 +703,8 @@ def health():
 # RUN
 # ─────────────────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
-    print("  Starting SmartChef API on http://localhost:5000")
+    port = int(os.environ.get('PORT', 5000))
+    print(f"  Starting SmartChef API on http://0.0.0.0:{port}")
     print("  Press Ctrl+C to stop\n")
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    # In production on Render, we use gunicorn. For local testing, we use app.run
+    app.run(debug=False, port=port, host='0.0.0.0')

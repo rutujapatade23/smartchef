@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import client from '../api/client';
 import { useAuth } from '../context/AuthContext';
-import { CalendarDays, Flame, ChefHat, Clock, Loader, ChevronRight } from 'lucide-react';
+import { CalendarDays, Flame, ChefHat, Clock, Loader, ChevronRight, History, X, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -44,6 +44,15 @@ interface Props {
   onPlanGenerated?: (plan: DayPlan[]) => void;
 }
 
+interface HistoryEntry {
+  id: number;
+  plan_name: string;
+  days: number;
+  diet: string;
+  daily_calories: number;
+  created_at: string;
+}
+
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const MEAL_COLORS: Record<string, { text: string; bg: string; border: string }> = {
@@ -81,12 +90,34 @@ const MealPlanner: React.FC<Props> = ({ onViewRecipe, savedPlan, onPlanGenerated
   const [activeDay, setActiveDay] = useState(0);
   const [gender, setGender]       = useState<'female' | 'male'>('female');
 
+  // History State
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [historyLoading, setHistoryLoading] = useState(false);
+
   // Restore saved plan when switching back to this tab
   useEffect(() => {
     if (savedPlan && !plan) {
       setPlan(savedPlan);
     }
   }, [savedPlan]);
+
+  const loadHistory = async () => {
+    if (!user) return;
+    setHistoryLoading(true);
+    try {
+      const res = await client.get('/api/mealplan/history');
+      setHistory(res.data);
+    } catch (e) {
+      console.error('Failed to load history', e);
+    } finally {
+      setHistoryLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user) loadHistory();
+  }, [user]);
 
   // ── Mifflin-St Jeor BMR ────────────────────────────────────────────────────
   function calcDailyCalories(g: 'male' | 'female' = gender): number {
@@ -125,10 +156,37 @@ const MealPlanner: React.FC<Props> = ({ onViewRecipe, savedPlan, onPlanGenerated
       setPlan(newPlan);
       setActiveDay(0);
       if (onPlanGenerated) onPlanGenerated(newPlan);
+      loadHistory(); // Refresh history
     } catch (err) {
       console.error('Meal plan failed', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadPlanFromHistory = async (id: number) => {
+    setLoading(true);
+    try {
+      const res = await client.get(`/api/mealplan/history/${id}`);
+      const historyPlan: DayPlan[] = res.data.plan;
+      setPlan(historyPlan);
+      setActiveDay(0);
+      if (onPlanGenerated) onPlanGenerated(historyPlan);
+      setShowHistory(false);
+    } catch (e) {
+      console.error('Failed to load plan from history', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteHistoryEntry = async (id: number) => {
+    if (!window.confirm('Delete this meal plan from your history?')) return;
+    try {
+      await client.delete(`/api/mealplan/history/${id}`);
+      loadHistory();
+    } catch (e) {
+      console.error('Failed to delete history entry', e);
     }
   };
 
@@ -137,18 +195,90 @@ const MealPlanner: React.FC<Props> = ({ onViewRecipe, savedPlan, onPlanGenerated
     <div className="max-w-5xl mx-auto p-8">
 
       {/* ── Header ─────────────────────────────────────────────────────────── */}
-      <div className="mb-10">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 bg-spice text-paper rounded-xl flex items-center justify-center">
-            <CalendarDays size={20} />
+      <div className="mb-10 flex items-center justify-between">
+        <div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 bg-spice text-paper rounded-xl flex items-center justify-center">
+              <CalendarDays size={20} />
+            </div>
+            <h1 className="text-4xl font-serif font-bold">Meal Planner</h1>
           </div>
-          <h1 className="text-4xl font-serif font-bold">Meal Planner</h1>
+          <p className="text-ink/50">
+            Your personalised {settings.days}-day Indian meal plan — multiple dishes per meal,
+            all within your <strong>{user?.goal?.replace(/-/g, ' ')}</strong> calorie budget.
+          </p>
         </div>
-        <p className="text-ink/50">
-          Your personalised {settings.days}-day Indian meal plan — multiple dishes per meal,
-          all within your <strong>{user?.goal?.replace(/-/g, ' ')}</strong> calorie budget.
-        </p>
+        
+        {user && (
+          <button 
+            onClick={() => setShowHistory(!showHistory)}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all border border-ink/10 hover:bg-paper"
+            style={{ color: showHistory ? '#C84B11' : 'rgba(13,13,13,0.5)' }}
+          >
+            <History size={16} />
+            History
+          </button>
+        )}
       </div>
+
+      {/* ── History Panel ──────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {showHistory && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }} 
+            animate={{ opacity: 1, height: 'auto' }} 
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden mb-8"
+          >
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-ink/5">
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-ink/40">Past Plans</h3>
+                <button onClick={() => setShowHistory(false)} className="p-1 hover:bg-paper rounded-lg transition-colors">
+                  <X size={16} className="text-ink/30" />
+                </button>
+              </div>
+
+              {historyLoading ? (
+                <div className="py-8 flex justify-center">
+                  <Loader size={24} className="animate-spin text-spice/30" />
+                </div>
+              ) : history.length === 0 ? (
+                <p className="text-center py-8 text-sm italic text-ink/30">No saved plans yet</p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+                  {history.map(entry => (
+                    <div key={entry.id} className="p-4 rounded-2xl border border-ink/5 hover:border-spice/20 transition-all flex items-center justify-between group">
+                      <div>
+                        <p className="font-serif font-bold text-sm">{entry.plan_name}</p>
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-ink/30 mt-0.5">
+                          {entry.diet} · {entry.days} days · {entry.daily_calories} kcal
+                        </p>
+                        <p className="text-[9px] text-ink/20 mt-1">
+                          {new Date(entry.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                        </p>
+                      </div>
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={() => loadPlanFromHistory(entry.id)}
+                          className="px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest bg-spice text-paper hover:opacity-90 transition-all"
+                        >
+                          Load
+                        </button>
+                        <button 
+                          onClick={() => deleteHistoryEntry(entry.id)}
+                          className="p-1.5 rounded-lg text-red-500 hover:bg-red-50 transition-all opacity-0 group-hover:opacity-100"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Settings Card ──────────────────────────────────────────────────── */}
       <div className="bg-white rounded-3xl p-6 shadow-sm border border-ink/5 mb-8">

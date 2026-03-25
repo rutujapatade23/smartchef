@@ -49,7 +49,15 @@ load_dotenv()
 # ─────────────────────────────────────────────
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'smartchef-dev-secret-2024')
-CORS(app, supports_credentials=True, origins=['http://localhost:3000', 'http://localhost:5173'])
+CORS(app, supports_credentials=True, origins=['*'])  # Allow all origins for production
+
+@app.route('/', methods=['GET'])
+def root():
+    return jsonify({
+        "status": "success",
+        "message": "SmartChef Backend API is running",
+        "version": "1.0.0"
+    })
 
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, 'models')
@@ -60,18 +68,20 @@ MODELS_DIR = os.path.join(BASE_DIR, 'models')
 # ─────────────────────────────────────────────
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-DB_CONFIG = {
-    'host':     os.getenv('DB_HOST',     'localhost'),
-    'port':     os.getenv('DB_PORT',     '5432'),
-    'dbname':   os.getenv('DB_NAME',     'smartchef'),
-    'user':     os.getenv('DB_USER',     'postgres'),
-    'password': os.getenv('DB_PASSWORD', '123456789'),
-}
-
 def get_db():
     if DATABASE_URL:
+        # Production: Use the full connection string (Neon/Render)
         return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
-    return psycopg2.connect(**DB_CONFIG, cursor_factory=RealDictCursor)
+    
+    # Fallback/Local: Use individual environment variables
+    db_config = {
+        'host':     os.getenv('DB_HOST',     'localhost'),
+        'port':     os.getenv('DB_PORT',     '5432'),
+        'dbname':   os.getenv('DB_NAME',     'smartchef'),
+        'user':     os.getenv('DB_USER',     'postgres'),
+        'password': os.getenv('DB_PASSWORD', '123456789'),
+    }
+    return psycopg2.connect(**db_config, cursor_factory=RealDictCursor)
 
 def init_db():
     conn = get_db()
@@ -1177,4 +1187,5 @@ if __name__ == '__main__':
     print(f"  Starting SmartChef API on http://0.0.0.0:{port}")
     print("  Press Ctrl+C to stop\n")
     # In production on Render, we use gunicorn. For local testing, we use app.run
+    # Setting debug=False for production
     app.run(debug=False, port=port, host='0.0.0.0')

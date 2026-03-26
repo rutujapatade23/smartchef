@@ -76,16 +76,20 @@ MODELS_DIR = os.path.join(BASE_DIR, 'models')
 def get_db():
     url = os.getenv("DATABASE_URL")
     
-    # Strip channel_binding param — psycopg2 does not support it
-    if url:
+    # If DATABASE_URL is present, use it and strip any incompatible parameters
+    if url and url.strip():
+        # psycopg2 does not support the channel_binding parameter, so we strip it
         url = url.replace('&channel_binding=require', '').replace('?channel_binding=require&', '?').replace('?channel_binding=require', '')
         try:
             return psycopg2.connect(url, cursor_factory=RealDictCursor)
         except Exception as e:
             print(f"  ⚠ Failed to connect using DATABASE_URL: {e}")
-            # Fall through to individual config if URL fails
+            # If we're on Render, we MUST have a working DATABASE_URL
+            if os.getenv('RENDER'):
+                raise Exception(f"CRITICAL: DATABASE_URL provided but connection failed: {e}")
     
-    # Fallback/Local: Use individual environment variables
+    # Fallback/Local: Use individual environment variables only if NOT on Render
+    # or if DATABASE_URL was not provided.
     db_config = {
         'host':     os.getenv('DB_HOST',     'localhost'),
         'port':     os.getenv('DB_PORT',     '5432'),
@@ -94,10 +98,17 @@ def get_db():
         'password': os.getenv('DB_PASSWORD', '123456789'),
     }
     
+    # On Render, if we reach here without a DATABASE_URL, it's a configuration error
+    if os.getenv('RENDER') and not (url and url.strip()):
+        print("  ⚠ WARNING: Running on Render but DATABASE_URL is missing!")
+        print("  Please set the DATABASE_URL environment variable in your Render dashboard.")
+
     try:
         return psycopg2.connect(**db_config, cursor_factory=RealDictCursor)
     except Exception as e:
-        print(f"  ⚠ Database connection failed: {e}")
+        # Provide a more descriptive error for the user
+        if "localhost" in str(e) or "127.0.0.1" in str(e):
+            raise Exception(f"Database connection refused. The server is trying to connect to 'localhost', but it should be using your production database URL. Please ensure DATABASE_URL is set in your environment variables. Error: {e}")
         raise e
 
 def init_db():

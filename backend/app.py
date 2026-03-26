@@ -42,7 +42,13 @@ from psycopg2.extras import RealDictCursor
 from sklearn.metrics.pairwise import cosine_similarity
 from dotenv import load_dotenv
 
-load_dotenv()
+# Always load .env from the backend directory, regardless of where the script is run from
+_env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
+if os.path.exists(_env_path):
+    load_dotenv(_env_path)
+    print(f"  ✓ Loaded environment from {_env_path}")
+else:
+    print(f"  ⚠ No .env file found at {_env_path}")
 
 # ─────────────────────────────────────────────
 # APP SETUP
@@ -56,7 +62,8 @@ def root():
     return jsonify({
         "status": "success",
         "message": "SmartChef Backend API is running",
-        "version": "1.0.0"
+        "database_connected": os.getenv("DATABASE_URL") is not None,
+        "version": "1.0.1"
     })
 
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
@@ -66,12 +73,17 @@ MODELS_DIR = os.path.join(BASE_DIR, 'models')
 # ─────────────────────────────────────────────
 # DATABASE
 # ─────────────────────────────────────────────
-DATABASE_URL = os.getenv("DATABASE_URL")
-
 def get_db():
-    if DATABASE_URL:
-        # Production: Use the full connection string (Neon/Render)
-        return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
+    url = os.getenv("DATABASE_URL")
+    
+    # Strip channel_binding param — psycopg2 does not support it
+    if url:
+        url = url.replace('&channel_binding=require', '').replace('?channel_binding=require&', '?').replace('?channel_binding=require', '')
+        try:
+            return psycopg2.connect(url, cursor_factory=RealDictCursor)
+        except Exception as e:
+            print(f"  ⚠ Failed to connect using DATABASE_URL: {e}")
+            # Fall through to individual config if URL fails
     
     # Fallback/Local: Use individual environment variables
     db_config = {
@@ -81,7 +93,12 @@ def get_db():
         'user':     os.getenv('DB_USER',     'postgres'),
         'password': os.getenv('DB_PASSWORD', '123456789'),
     }
-    return psycopg2.connect(**db_config, cursor_factory=RealDictCursor)
+    
+    try:
+        return psycopg2.connect(**db_config, cursor_factory=RealDictCursor)
+    except Exception as e:
+        print(f"  ⚠ Database connection failed: {e}")
+        raise e
 
 def init_db():
     conn = get_db()

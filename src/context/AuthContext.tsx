@@ -17,15 +17,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('smartchef_user');
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch {
-        localStorage.removeItem('smartchef_user');
+    const checkSession = async () => {
+      const savedUser = localStorage.getItem('smartchef_user');
+      if (savedUser) {
+        try {
+          // Verify with backend
+          const response = await client.get('/api/me');
+          if (response.data.success) {
+            setUser(JSON.parse(savedUser));
+          } else {
+            throw new Error('Session expired');
+          }
+        } catch (err) {
+          console.warn('Session verification failed, logging out locally');
+          setUser(null);
+          localStorage.removeItem('smartchef_user');
+        }
       }
-    }
-    setLoading(false);
+      setLoading(false);
+    };
+
+    checkSession();
   }, []);
 
   const login = async (username: string, password: string) => {
@@ -41,6 +53,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
         setUser(realUser);
         localStorage.setItem('smartchef_user', JSON.stringify(realUser));
+        // Save JWT token for cross-origin API auth
+        if (response.data.token) {
+          localStorage.setItem('smartchef_token', response.data.token);
+        }
       } else {
         throw new Error(response.data.message || 'Login failed');
       }
@@ -65,6 +81,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
         setUser(newUser);
         localStorage.setItem('smartchef_user', JSON.stringify(newUser));
+        // Save JWT token for cross-origin API auth
+        if (response.data.token) {
+          localStorage.setItem('smartchef_token', response.data.token);
+        }
       } else {
         throw new Error(response.data.message || 'Registration failed');
       }
@@ -82,6 +102,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     setUser(null);
     localStorage.removeItem('smartchef_user');
+    localStorage.removeItem('smartchef_token');
   };
 
   return (

@@ -5,4 +5,14 @@ const client = axios.create({
   withCredentials: true,
 });
 
+// Attach JWT token from localStorage on every request
+client.interceptors.request.use((config) => {
+  const token = localStorage.getItem('smartchef_token');
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export default client;

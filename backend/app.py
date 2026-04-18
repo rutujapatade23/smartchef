@@ -35,6 +35,8 @@ import re
 import json
 import random
 import warnings
+from datetime import datetime, timezone, timedelta
+import jwt as pyjwt
 warnings.filterwarnings('ignore')
 
 import psycopg2
@@ -54,8 +56,42 @@ else:
 # APP SETUP
 # ─────────────────────────────────────────────
 app = Flask(__name__)
-app.secret_key = os.getenv('SECRET_KEY', 'smartchef-dev-secret-2024')
-CORS(app, supports_credentials=True, origins=['*'])  # Allow all origins for production
+JWT_SECRET = os.getenv('SECRET_KEY', 'smartchef-dev-secret-2024')
+app.secret_key = JWT_SECRET
+
+# ─────────────────────────────────────────────
+# CORS CONFIG
+# ─────────────────────────────────────────────
+CORS(app, supports_credentials=True, origins='*')
+
+# ─────────────────────────────────────────────
+# JWT HELPERS
+# ─────────────────────────────────────────────
+def create_token(email: str, goal: str) -> str:
+    """Create a JWT that expires in 7 days."""
+    payload = {
+        'email': email,
+        'goal':  goal,
+        'exp':   datetime.now(timezone.utc) + timedelta(days=7)
+    }
+    return pyjwt.encode(payload, JWT_SECRET, algorithm='HS256')
+
+def get_current_user():
+    """Read JWT from Authorization header and return (email, goal) or (None, None)."""
+    auth = request.headers.get('Authorization', '')
+    if auth.startswith('Bearer '):
+        token = auth[7:]
+        try:
+            data = pyjwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+            return data.get('email'), data.get('goal', 'maintenance')
+        except pyjwt.ExpiredSignatureError:
+            return None, None
+        except Exception:
+            return None, None
+    # Fallback: also accept session cookie (local dev)
+    email = session.get('email')
+    goal  = session.get('goal', 'maintenance')
+    return email, goal
 
 @app.route('/', methods=['GET'])
 def root():
@@ -311,7 +347,7 @@ def recipe_to_detail(row, servings=1):
         'time':       f"{row['total_time_mins']} mins",
         'diet':       row['diet'],
         'course':     row['course'],
-        'goal':       goal_map.get(session.get('goal', 'maintenance'), 'Maintenance'),
+        'goal':       goal_map.get(get_current_user()[1] or 'maintenance', 'Maintenance'),
         'ingredients': ingredients,
         'steps':      steps,
         'nutrition':  {
@@ -330,7 +366,8 @@ def generate_substitutions(row):
     """Rule-based smart substitutions — 18 ingredient rules, goal-aware."""
     subs = []
     ingredients_lower = str(row.get('ingredients_clean', '') or '').lower()
-    goal = session.get('goal', 'maintenance')
+    _, goal = get_current_user()
+    goal = goal or 'maintenance'
 
     RULES = [
         {'check': 'sugar',          'from': 'Sugar',                     'to': 'Jaggery or Stevia',              'reason': 'Lower glycemic index — better blood sugar control'},
@@ -525,9 +562,11 @@ def register():
 
     session['email'] = email
     session['goal']  = goal
+    token = create_token(email, goal)
 
     return jsonify({
         'success': True,
+        'token': token,
         'user': {
             'name':     user['name'],
             'username': user['email'],
@@ -560,9 +599,11 @@ def login():
 
     session['email'] = email
     session['goal']  = user['goal']
+    token = create_token(email, user['goal'])
 
     return jsonify({
         'success': True,
+        'token': token,
         'user': {
             'name':     user['name'],
             'username': user['email'],
@@ -582,7 +623,7 @@ def logout():
 
 @app.route('/api/profile', methods=['PUT'])
 def update_profile():
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
     data   = request.json
@@ -603,7 +644,8 @@ def update_profile():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
     session['goal'] = goal
-    return jsonify({'success': True, 'user': {
+    new_token = create_token(email, goal)
+    return jsonify({'success': True, 'token': new_token, 'user': {
         'name': user['name'], 'username': user['email'],
         'height': user['height'], 'weight': user['weight'],
         'goal': user['goal'], 'age': user.get('age', 21)
@@ -612,7 +654,7 @@ def update_profile():
 
 @app.route('/api/password', methods=['PUT'])
 def update_password():
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
     data             = request.json
@@ -635,7 +677,7 @@ def update_password():
 
 @app.route('/api/me', methods=['GET'])
 def me():
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
     try:
@@ -745,7 +787,7 @@ def search_recipes():
 
 @app.route('/api/favourites', methods=['POST'])
 def add_favourite():
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
     
@@ -770,7 +812,7 @@ def add_favourite():
 
 @app.route('/api/favourites/<recipe_id>', methods=['DELETE'])
 def remove_favourite(recipe_id):
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
         
@@ -790,7 +832,7 @@ def remove_favourite(recipe_id):
 
 @app.route('/api/favourites', methods=['GET'])
 def get_favourites():
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
         
@@ -907,7 +949,6 @@ def similar_recipes(recipe_id):
 
 
 import json
-from datetime import datetime
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MEAL PLAN — Multi-dish Indian meals, calories per 1 serving, goal-aware
@@ -1087,7 +1128,7 @@ def meal_plan():
         plan.append(day_plan)
 
     # Save to history if logged in
-    email = session.get('email')
+    email, _ = get_current_user()
     if email:
         try:
             plan_name = f"{days}-Day {diet} Plan · {datetime.now().strftime('%b %d')}"
@@ -1120,7 +1161,7 @@ def meal_plan():
 
 @app.route('/api/mealplan/history', methods=['GET'])
 def get_mealplan_history():
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
     
@@ -1143,7 +1184,7 @@ def get_mealplan_history():
 
 @app.route('/api/mealplan/history/<int:plan_id>', methods=['GET'])
 def get_mealplan_history_entry(plan_id):
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
     
@@ -1175,7 +1216,7 @@ def get_mealplan_history_entry(plan_id):
 
 @app.route('/api/mealplan/history/<int:plan_id>', methods=['DELETE'])
 def delete_mealplan_history_entry(plan_id):
-    email = session.get('email')
+    email, _ = get_current_user()
     if not email:
         return jsonify({'success': False, 'message': 'Not logged in'}), 401
         

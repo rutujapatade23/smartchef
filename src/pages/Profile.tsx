@@ -36,6 +36,10 @@ const Profile: React.FC = () => {
         // Update localStorage
         const saved = JSON.parse(localStorage.getItem('smartchef_user') || '{}');
         localStorage.setItem('smartchef_user', JSON.stringify({ ...saved, ...profileData }));
+        // Refresh JWT token if returned (goal may have changed)
+        if (res.data.token) {
+          localStorage.setItem('smartchef_token', res.data.token);
+        }
         setTimeout(() => window.location.reload(), 1000);
       }
     } catch (err: any) {

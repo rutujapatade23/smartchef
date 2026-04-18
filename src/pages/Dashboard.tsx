@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
 import RecipeDetailView from '../components/RecipeDetail';
+import RecipesPage from '../components/RecipesPage';
 import MealPlanner from '../components/MealPlanner';
 import Recommendations from '../components/Recommendations';
 import { UtensilsCrossed, CalendarDays, Sparkles, Heart } from 'lucide-react';
@@ -36,7 +36,6 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const scrollToTop = () => {
-    // Scroll the main content area to top
     if (mainRef.current) {
       mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -45,6 +44,7 @@ const Dashboard: React.FC = () => {
 
   const handleTabChange = (tab: Tab) => {
     setActiveTab(tab);
+    if (tab !== 'recipes' && tab !== 'saved') setSelectedRecipeId(null);
     scrollToTop();
   };
 
@@ -52,7 +52,6 @@ const Dashboard: React.FC = () => {
     setRecipeServings(1);
     setSelectedRecipeId(id);
     setActiveTab('recipes');
-    // Small delay to let tab switch complete, then scroll to top
     setTimeout(scrollToTop, 50);
   };
 
@@ -60,6 +59,11 @@ const Dashboard: React.FC = () => {
     setRecipeServings(1);
     setSelectedRecipeId(id);
     setTimeout(scrollToTop, 50);
+  };
+
+  // When a recipe is selected in the full-page view, go back resets it
+  const handleBackFromDetail = () => {
+    setSelectedRecipeId(null);
   };
 
   if (loading) return (
@@ -100,50 +104,55 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex overflow-hidden">
-        {(activeTab === 'recipes' || activeTab === 'saved') && (
-          <>
-            <Sidebar
-              onSelectRecipe={handleSelectRecipe}
-              selectedRecipeId={selectedRecipeId}
-              defaultMode={activeTab === 'saved' ? 'saved' : 'all'}
-            />
-            <main
-              ref={mainRef}
-              className="flex-1 overflow-y-auto custom-scrollbar"
-            >
-              <RecipeDetailView
-                recipeId={selectedRecipeId}
-                onSelectRecipe={handleSelectRecipe}
-                defaultServings={recipeServings}
-              />
-            </main>
-          </>
-        )}
+      <div className="flex-1 overflow-hidden">
+        <main ref={mainRef} className="h-full overflow-y-auto custom-scrollbar">
 
-        {activeTab === 'mealplan' && (
-          <main
-            ref={mainRef}
-            className="flex-1 overflow-y-auto custom-scrollbar"
-          >
+          {/* RECIPES & SAVED TABS — Full page layout */}
+          {(activeTab === 'recipes' || activeTab === 'saved') && (
+            <>
+              {selectedRecipeId ? (
+                /* ── Recipe Detail View ── */
+                <div>
+                  {/* Back button */}
+                  <div className="px-8 pt-6 pb-0">
+                    <button
+                      onClick={handleBackFromDetail}
+                      className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-ink/40 hover:text-spice transition-colors mb-2"
+                    >
+                      ← Back to Recipes
+                    </button>
+                  </div>
+                  <RecipeDetailView
+                    recipeId={selectedRecipeId}
+                    onSelectRecipe={handleSelectRecipe}
+                    defaultServings={recipeServings}
+                  />
+                </div>
+              ) : (
+                /* ── Full-page Recipes Grid ── */
+                <RecipesPage
+                  onSelectRecipe={handleSelectRecipe}
+                  selectedRecipeId={selectedRecipeId}
+                  defaultMode={activeTab === 'saved' ? 'saved' : 'all'}
+                />
+              )}
+            </>
+          )}
+
+          {activeTab === 'mealplan' && (
             <MealPlanner
               onViewRecipe={handleViewRecipeFromMealPlan}
               savedPlan={savedMealPlan}
               onPlanGenerated={setSavedMealPlan}
             />
-          </main>
-        )}
+          )}
 
-        {activeTab === 'recommendations' && (
-          <main
-            ref={mainRef}
-            className="flex-1 overflow-y-auto custom-scrollbar"
-          >
+          {activeTab === 'recommendations' && (
             <Recommendations onSelectRecipe={(id) => {
               handleViewRecipeFromMealPlan(id);
             }} />
-          </main>
-        )}
+          )}
+        </main>
       </div>
     </div>
   );

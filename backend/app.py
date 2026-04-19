@@ -864,13 +864,14 @@ def get_favourites():
 
 @app.route('/api/recommend', methods=['POST'])
 def recommend():
-    data   = request.json or {}
-    height = float(data.get('height', 165))
-    weight = float(data.get('weight', 70))
-    goal   = data.get('goal', 'maintenance')
-    diet   = data.get('diet', 'Veg')
-    course = data.get('course', '')
-    n      = int(data.get('n', 10))
+    data    = request.json or {}
+    height  = float(data.get('height', 165))
+    weight  = float(data.get('weight', 70))
+    goal    = data.get('goal', 'maintenance')
+    diet    = data.get('diet', 'Veg')
+    course  = data.get('course', '')
+    n       = int(data.get('n', 10))
+    shuffle = bool(data.get('shuffle', False))
 
     bmi = weight / ((height / 100) ** 2)
 
@@ -900,28 +901,36 @@ def recommend():
         diet_val, course_val, 1, 30
     ]]))
 
-    distances, indices = knn_model.kneighbors(query_scaled, n_neighbors=min(50, len(recipes_df)))
+    # When shuffling, fetch a larger pool so we can sample different results
+    pool_size = min(150, len(recipes_df)) if shuffle else min(50, len(recipes_df))
+    distances, indices = knn_model.kneighbors(query_scaled, n_neighbors=pool_size)
 
-    recommended = []
+    # Build full candidate list
+    candidates = []
     for idx in indices[0]:
         row = recipes_df.iloc[idx]
         if diet and row['diet'] != diet: continue
         if course and row['course'] != course: continue
-        recommended.append(recipe_to_summary(row))
-        if len(recommended) >= n: break
+        candidates.append(recipe_to_summary(row))
 
-    if len(recommended) < 5:
+    if len(candidates) < 5:
+        # Fallback: relax filters
         for idx in indices[0]:
             s = recipe_to_summary(recipes_df.iloc[idx])
-            if s not in recommended:
-                recommended.append(s)
-            if len(recommended) >= n: break
+            if s not in candidates:
+                candidates.append(s)
+
+    # Shuffle the pool so each refresh yields different dishes
+    if shuffle and len(candidates) > n:
+        random.shuffle(candidates)
+
+    recommended = candidates[:n]
 
     return jsonify({
         'bmi': round(bmi, 1), 'goal': goal,
         'cal_target': cal_target,
-        'recipes': recommended[:n],
-        'count': len(recommended[:n])
+        'recipes': recommended,
+        'count': len(recommended)
     })
 
 

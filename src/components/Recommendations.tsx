@@ -34,13 +34,13 @@ const Recommendations: React.FC<Props> = ({ onSelectRecipe }) => {
   const bmi = user ? user.weight / Math.pow(user.height / 100, 2) : 0;
   const goalInfo = GOAL_LABELS[user?.goal ?? 'maintenance'];
 
-  const fetchRecommendations = async (course = courseFilter, diet = dietFilter) => {
+  const fetchRecommendations = async (course = courseFilter, diet = dietFilter, shuffle = false) => {
     if (!user) return;
     setLoading(true);
     try {
       const response = await client.post('/api/recommend', {
         height: user.height, weight: user.weight, goal: user.goal,
-        diet, course: course === 'All' ? '' : course, n: 12,
+        diet, course: course === 'All' ? '' : course, n: 12, shuffle,
       });
       setData(response.data);
     } catch (err) { console.error(err); }
@@ -69,7 +69,6 @@ const Recommendations: React.FC<Props> = ({ onSelectRecipe }) => {
           </div>
           <h1 className="text-4xl font-serif font-bold">For You</h1>
         </div>
-        <p className="text-ink/50">Recipes recommended by our KNN model based on your health profile.</p>
       </div>
 
       {/* Profile Stats — all light colored */}
@@ -122,7 +121,7 @@ const Recommendations: React.FC<Props> = ({ onSelectRecipe }) => {
             </button>
           ))}
         </div>
-        <button onClick={() => fetchRecommendations()} disabled={loading}
+        <button onClick={() => fetchRecommendations(courseFilter, dietFilter, true)} disabled={loading}
           className="ml-auto px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-ink/10 hover:border-spice/30 text-ink/40 hover:text-spice transition-all flex items-center gap-2 disabled:opacity-30"
         >
           <RefreshCw size={12} className={loading ? 'animate-spin' : ''} /> Refresh

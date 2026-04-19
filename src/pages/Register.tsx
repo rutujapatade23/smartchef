@@ -18,6 +18,14 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    const domain = formData.username.split('@')[1]?.toLowerCase();
+    const typoDomains = ['gma.com', 'gmil.com', 'gmail.co', 'yaho.com', 'yahoo.co', 'outloo.com', 'hotmai.com', 'gamil.com'];
+    if (domain && typoDomains.includes(domain)) {
+      setError(`Invalid email domain format. Did you mean @${domain.replace('gma.com', 'gmail.com').replace('gmil.com', 'gmail.com').replace('gmail.co', 'gmail.com').replace('gamil.com', 'gmail.com')}?`);
+      return;
+    }
+
     if (!formData.height || !formData.weight || !formData.age) {
       setError('Please fill in all fields'); return;
     }

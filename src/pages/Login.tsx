@@ -15,6 +15,14 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    const domain = username.split('@')[1]?.toLowerCase();
+    const typoDomains = ['gma.com', 'gmil.com', 'gmail.co', 'yaho.com', 'yahoo.co', 'outloo.com', 'hotmai.com', 'gamil.com'];
+    if (domain && typoDomains.includes(domain)) {
+      setError(`Invalid email domain format. Did you mean @${domain.replace('gma.com', 'gmail.com').replace('gmil.com', 'gmail.com').replace('gmail.co', 'gmail.com').replace('gamil.com', 'gmail.com')}?`);
+      return;
+    }
+
     setLoading(true);
     try {
       await login(username, password);

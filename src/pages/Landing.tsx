@@ -258,7 +258,7 @@ const Landing: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: <Brain size={28} />, color: 'bg-spice', title: 'AI Recommendations', desc: 'Our model analyses your BMI and goal to recommend the most suitable recipes from 5,938 options.' },
+              { icon: <Brain size={28} />, color: 'bg-spice', title: 'ML Recommendations', desc: 'Our model analyses your BMI and goal to recommend the most suitable recipes from 5,938 options.' },
               { icon: <Salad size={28} />, color: 'bg-mint',  title: 'Real Nutrition Data', desc: "Every recipe's nutrition is calculated by parsing ingredient quantities — calories, protein, carbs, fat and fiber." },
               { icon: <Clock size={28} />, color: 'bg-turmeric', title: 'Smart Meal Plans', desc: 'Get a personalised 7-day meal plan that hits your daily calorie target with breakfast, lunch, dinner and snack.' },
             ].map((f, i) => (

@@ -42,7 +42,7 @@ const Login: React.FC = () => {
               Master the spice,<br />control the health.
             </h2>
             <p className="text-paper/60 text-xl max-w-md">
-              Join thousands of home chefs using AI to transform their kitchens.
+              Join thousands of home chefs using ML to transform their kitchens.
             </p>
           </motion.div>
         </div>
@@ -85,6 +85,8 @@ const Login: React.FC = () => {
                   onChange={e => setUsername(e.target.value)}
                   className="w-full bg-white border border-ink/5 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-spice transition-colors shadow-sm"
                   placeholder="you@example.com"
+                  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                  title="Please enter a valid email address."
                 />
                 <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/20" />
               </div>
@@ -94,11 +96,12 @@ const Login: React.FC = () => {
               <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-ink/40 ml-1">Password</label>
               <div className="relative">
                 <input
-                  type="password" required
+                  type="password" required minLength={6}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   className="w-full bg-white border border-ink/5 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-spice transition-colors shadow-sm"
                   placeholder="••••••••"
+                  title="Password must be at least 6 characters long."
                 />
                 <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/20" />
               </div>

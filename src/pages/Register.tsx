@@ -74,7 +74,9 @@ const Register: React.FC = () => {
               <div className="relative">
                 <input type="text" required value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
-                  className={inputClass} placeholder="Your full name" />
+                  className={inputClass} placeholder="Your full name"
+                  minLength={2} maxLength={50}
+                  pattern="^[a-zA-Z\s]+$" title="Name should only contain letters and spaces." />
                 <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/20" />
               </div>
             </div>
@@ -84,7 +86,9 @@ const Register: React.FC = () => {
               <div className="relative">
                 <input type="email" required value={formData.username}
                   onChange={e => setFormData({ ...formData, username: e.target.value })}
-                  className={inputClass} placeholder="you@example.com" />
+                  className={inputClass} placeholder="you@example.com"
+                  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                  title="Please enter a valid email address." />
                 <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/20" />
               </div>
             </div>

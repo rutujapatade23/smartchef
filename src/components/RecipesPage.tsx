@@ -147,7 +147,7 @@ const RecipesPage: React.FC<RecipesPageProps> = ({ onSelectRecipe, selectedRecip
               </div>
               <h1 className="font-serif font-bold text-4xl text-white mb-1 drop-shadow">
                 {mode === 'all'
-                  ? (user ? `Good day, ${user.name.split(' ')[0]}! 👋` : 'All Recipes')
+                  ? (user ? `Good day, ${user.name.split(' ')[0]}!` : 'All Recipes')
                   : 'Saved Recipes ❤️'}
               </h1>
               {user && mode === 'all' && (
